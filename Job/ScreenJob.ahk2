@@ -1,0 +1,68 @@
+class ScreenController {
+    __New(appId) {
+        this.AppId := appId
+        this.HasReward := true
+    }
+
+    IsFacility() {
+        if (PixelGetColor(1625, 84, 'RGB') != 0xF7F3B6) {
+            return false
+        }
+        if (PixelGetColor(1664, 83, 'RGB') != 0xF7F4C3) {
+            return false
+        }
+        if (PixelGetColor(1689, 68, 'RGB') != 0x4B2D1A) {
+            return false
+        }
+        if (PixelGetColor(1248, 894, 'RGB') == 0x9DDD58) {
+            return true
+        }
+        return false
+    }
+    HomeGoFacility() {
+        if (PixelGetColor(479, 67, 'RGB') != 0xB0895E) {
+            return false
+        }
+        if (PixelGetColor(527, 983, 'RGB') == 0xCB9B4C) {
+            Click(527, 983)
+            return true
+        }
+        return false
+    }
+    
+    HasBackButton(isExecuteBack := false) {
+        if (PixelGetColor(97, 95, 'RGB') != 0x351F15) {
+            return false
+        }
+        if (PixelGetColor(116, 94, 'RGB') == 0xEAD08D) {
+            if (isExecuteBack) {
+                Click(116, 94)
+                Sleep(1000)
+            }
+            return true
+        }
+        return false
+    }
+
+    CollectRewardOK() {
+        if (PixelGetColor(1652, 79, 'RGB') != 0x3E3A2D) {
+            return false
+        }
+        if (PixelGetColor(1235, 905, 'RGB') != 0x202D13) {
+            return false
+        }
+        if (PixelGetColor(1016, 934, 'RGB') == 0xFEE777) {
+            Click(1016, 934)
+            Sleep(500)
+            return true
+        }
+        return false
+    }
+
+    IsTimeUp() {
+        if (a_hour > 8) {
+            return true
+        }
+        return false
+    }
+}

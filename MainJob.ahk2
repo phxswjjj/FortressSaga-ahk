@@ -1,0 +1,67 @@
+#Include ./Utility/Common.ahk2
+#Include ./Job/ScreenJob.ahk2
+
+WinTitle := "要塞"
+UniqueID := WinExist(WinTitle)
+if not UniqueID {
+    Utility.OutputLog("[" WinTitle "] not found")
+    ExitApp
+}
+Utility.OutputLog("[" WinTitle "] found [" UniqueID "]")
+
+screenCtrl := ScreenController(UniqueID)
+
+SetTimer FightJob, 200
+
+Return
+
+FightJob() {
+    global screenCtrl
+    If not WinActive("ahk_id " UniqueID)
+        return
+
+    if (screenCtrl.IsFacility()) {
+        Utility.OutputLog("IsFacility")
+    
+        if (screenCtrl.IsTimeUp()) {
+            Utility.OutputLog("IsTimeUp")
+            ExitApp
+        } else {
+            Sleep(60000)
+        }
+        return
+    } else if (screenCtrl.HasBackButton(true)) {
+        Utility.OutputLog("HasBackButton")
+        Sleep(1000)
+    }
+    
+    if (screenCtrl.HomeGoFacility()) {
+        Utility.OutputLog("HomeGoFacility")
+        Sleep(1000)
+    }
+
+    if (screenCtrl.CollectRewardOK()) {
+        Utility.OutputLog("CollectReward")
+        Sleep(2000)
+    }
+}
+
+~RButton::
+{
+    If not WinActive("ahk_id " UniqueID)
+        return
+    
+    MouseGetPos(&MouseX, &MouseY)
+    MouseMove(0, 0)
+    color := PixelGetColor(MouseX, MouseY, 'RGB')
+    Utility.OutputLog("click " color " " MouseX ", " MouseY)
+    
+    MouseMove(MouseX, MouseY)
+}
+
+^!z:: ; Ctrl+Alt+Z hotkey.
+{
+    Utility.OutputLog("Z pressed")
+    Utility.OutputLog("Stopped")
+    ExitApp
+}
