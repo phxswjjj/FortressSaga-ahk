@@ -25,7 +25,7 @@ FightJob() {
     
         if (screenCtrl.IsTimeUp()) {
             Utility.OutputLog("IsTimeUp")
-            ExitApp
+            Sleep(60 * 60 * 1000)
         } else {
             Sleep(60000)
         }
