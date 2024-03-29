@@ -14,27 +14,27 @@ class ScreenController {
         if (PixelGetColor(1689, 68, 'RGB') != 0x4B2D1A) {
             return false
         }
-        if (PixelGetColor(1248, 894, 'RGB') == 0x9DDD58) {
+        if (Utility.ArrayContain([0x9DDD58, 0x9BDC56], PixelGetColor(1248, 894, 'RGB'))) {
             return true
         }
         return false
     }
     HomeGoFacility() {
-        if (PixelGetColor(479, 67, 'RGB') != 0xB0895E) {
+        if (PixelGetColor(479, 67, 'RGB') != 0xB38D5E) {
             return false
         }
-        if (PixelGetColor(527, 983, 'RGB') == 0xCB9B4C) {
-            Click(527, 983)
+        if (PixelGetColor(449, 941, 'RGB') == 0xE4C07E) {
+            Click(449, 941)
             return true
         }
         return false
     }
     
     HasBackButton(isExecuteBack := false) {
-        if (PixelGetColor(97, 95, 'RGB') != 0x351F15) {
+        if (!Utility.ArrayContain([0x351F15, 0x312B1D], PixelGetColor(97, 95, 'RGB'))) {
             return false
         }
-        if (PixelGetColor(116, 94, 'RGB') == 0xEAD08D) {
+        if (Utility.ArrayContain([0xEAD08D, 0xA2814D], PixelGetColor(116, 94, 'RGB'))) {
             if (isExecuteBack) {
                 Click(116, 94)
                 Sleep(1000)

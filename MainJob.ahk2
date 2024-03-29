@@ -27,7 +27,7 @@ FightJob() {
             Utility.OutputLog("IsTimeUp")
             Sleep(60 * 60 * 1000)
         } else {
-            Sleep(60000)
+            Sleep(60 * 1000)
         }
         return
     } else if (screenCtrl.HasBackButton(true)) {
